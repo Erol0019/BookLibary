@@ -1,6 +1,0 @@
-{
-    "jwtPrivateKey": "your-private-key",
-    "db": "mongodb://localhost:27017/your-database-name",
-    "port": "your-port-number",
-    "requiresAuth": false
-  }
