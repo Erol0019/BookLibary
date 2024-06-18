@@ -1,6 +1,5 @@
 require('express-async-errors');
 const winston = require('winston'); // logging library
-require('winston-mongodb'); // log errors to a database
 require('dotenv').config();
 const express = require('express');
 const app = express();
