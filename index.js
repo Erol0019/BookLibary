@@ -25,7 +25,7 @@ const option = {
 }
 
 const swaggerSpec = swaggerjsdoc(option);
-app.use('/api-docs', swaggerui.serve, swaggerui.setup(swaggerSpec));
+app.use('/swagger', swaggerui.serve, swaggerui.setup(swaggerSpec));
 
 require('./startup/routes.js')(app);
 require('./startup/db.js')();
