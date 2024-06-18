@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const {User, validate} = require('../models/user');
@@ -24,10 +26,9 @@ router.post('/', async (req, res) => {
 
     user = await user.save();
 
-    
+    const token = user.generateAuthToken();
 //     //you can also use 
-res.send(_.pick(user, ['_id', 'name', 'email'])); //return only name and email
- 
+res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email'])); //return only name and email
 }); 
 // res.send({
 //     name: user.name,
