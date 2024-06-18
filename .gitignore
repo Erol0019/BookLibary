@@ -1,6 +1,10 @@
 # Folders
 1.NodeExercises/
 
+# Files
+package-lock.json
+package.json
+
 # Logs
 logs
 *.log
