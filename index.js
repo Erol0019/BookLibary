@@ -1,36 +1,25 @@
+require('express-async-errors');
+const winston = require('winston'); // logging library
+require('winston-mongodb'); // log errors to a database
 require('dotenv').config();
-const Joi = require('joi');
-Joi.objectId = require('joi-objectid')(Joi);
-const mongoose = require('mongoose');
-const genres = require('./routes/genres.js');
-const customers = require('./routes/customers.js');
-const movies = require('./routes/movies.js');
-const rentals = require('./routes/rentals.js');
-const users = require('./routes/users.js');
-const auth = require('./routes/auth.js');
 const express = require('express');
-
-if(!process.env.jwtPrivateKey){
-    console.error('FATAL ERROR: jwtPrivateKey is not defined');
-    process.exit(1); // 0 means success, anything else means failure
-};
-
 const app = express();
 
-const mongoConnection = process.env.mongoConnection;
+require('./startup/routes.js')(app);
+require('./startup/db.js')();
+require('./startup/config.js')();
+require('./startup/validation.js')();
 
-mongoose.connect(mongoConnection)
-.then(() => console.log('Connected to MongoDB...'))
-.catch(err => console.error('Could not connect to MongoDB...'));
+// process.on('uncaughtException', (ex) => {
+//     console.log('WE GOT AN UNCAUGHT EXCEPTION');
+//     winston.error(ex.message, ex);
+// });
 
-app.use(express.json());
-app.use('/api/genres', genres);
-app.use('/api/customers', customers);
-app.use('/api/movies', movies);
-app.use('/api/rentals', rentals);
-app.use('/api/users', users);
-app.use('/api/auth', auth);
+winston.add(winston.transports.File, { filename: 'logfile.log' }); // log errors to a file
+//winston.add(winston.transports.MongoDB, { db: mongoConnection }); // log errors to a database
+
+// const p = Promise.reject(new Error('Something failed miserably!'));
 
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(port, () => winston.info(`Server is running on port ${port}`));
