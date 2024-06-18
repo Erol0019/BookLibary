@@ -4,6 +4,28 @@ require('winston-mongodb'); // log errors to a database
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const swaggerjsdoc = require('swagger-jsdoc');
+const swaggerui = require('swagger-ui-express');
+
+const option = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Node.js Api Project for mongodb',
+            version: '1.0.0',
+            description: 'A simple express library API'
+        },
+        servers:[
+            {
+                url: 'http://localhost:3000'
+            }
+        ]
+    },
+    apis: ['./swagger/*.js']
+}
+
+const swaggerSpec = swaggerjsdoc(option);
+app.use('/api-docs', swaggerui.serve, swaggerui.setup(swaggerSpec));
 
 require('./startup/routes.js')(app);
 require('./startup/db.js')();
