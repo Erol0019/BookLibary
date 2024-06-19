@@ -26,10 +26,12 @@ const option = {
 const swaggerSpec = swaggerjsdoc(option);
 app.use('/swagger', swaggerui.serve, swaggerui.setup(swaggerSpec));
 
+require('./startup/cors')(app);
 require('./startup/routes.js')(app);
 require('./startup/db.js')();
 require('./startup/config.js')();
 require('./startup/validation.js')();
+
 
 // process.on('uncaughtException', (ex) => {
 //     console.log('WE GOT AN UNCAUGHT EXCEPTION');
