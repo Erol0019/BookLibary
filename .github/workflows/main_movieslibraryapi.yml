@@ -28,7 +28,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: .
+          path: |
+            ./
+            !node_modules/**
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,5 +55,5 @@ jobs:
           package: .
 
 env:
-  mongoconnection: $secrets.mongoconnection
-  jwtPrivateKey: $secrets.jwtPrivateKey
+  MONGO_CONNECTION: ${{ secrets.mongoConnection }}
+  JWT_PRIVATE_KEY: ${{ secrets.jwtPrivateKey }}
