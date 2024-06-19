@@ -31,6 +31,7 @@ jobs:
           path: |
             ./
             !node_modules/**
+            .env
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,5 +56,5 @@ jobs:
           package: .
 
 env:
-  MONGO_CONNECTION: ${{ secrets.mongoConnection }}
-  JWT_PRIVATE_KEY: ${{ secrets.jwtPrivateKey }}
+  mongoConnection: ${{ secrets.mongoConnection }}
+  jwtPrivateKey: ${{ secrets.jwtPrivateKey }}
