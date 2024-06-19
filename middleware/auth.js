@@ -6,7 +6,7 @@ module.exports = function(req, res, next){
     if (!token) return res.status(401).send("access denied. no token.") //401 means unauthorized
 
     try{
-    const decoded = jwt.verify(token, process.env.jwtPrivateKey);
+    const decoded = jwt.verify(token, process.env.JWTPRIVATEKEY);
     req.user = decoded; 
     next();
     } catch (ex) {

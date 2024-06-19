@@ -33,7 +33,7 @@ To manage different configurations for different environments (development, prod
 
 ### Setting Up Environment Variables
 
-1. **Set the Environment**: Specify the environment using the `jwtPrivateKey` variable.
+1. **Set the Environment**: Specify the environment using the `JWTPRIVATEKEY` variable.
 
    For development and production:
 

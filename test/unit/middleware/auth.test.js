@@ -11,7 +11,7 @@ describe('auth middleware', () => {
             isAdmin: true 
         };
         
-        const token = jwt.sign(user, process.env.jwtPrivateKey);
+        const token = jwt.sign(user, process.env.JWTPRIVATEKEY);
 
         const req = {
             header: jest.fn().mockReturnValue(token)

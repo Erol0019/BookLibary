@@ -37,7 +37,7 @@ require('./startup/validation.js')();
 // });
 
 winston.add(winston.transports.File, { filename: 'logfile.log' }); // log errors to a file
-//winston.add(winston.transports.MongoDB, { db: mongoConnection }); // log errors to a database
+//winston.add(winston.transports.MongoDB, { db: MONGOCONNECTION }); // log errors to a database
 
 // const p = Promise.reject(new Error('Something failed miserably!'));
 

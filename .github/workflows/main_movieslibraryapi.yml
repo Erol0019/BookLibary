@@ -56,5 +56,5 @@ jobs:
           package: .
 
 env:
-  mongoConnection: ${{ secrets.mongoConnection }}
-  jwtPrivateKey: ${{ secrets.jwtPrivateKey }}
+  MONGOCONNECTION: ${{ secrets.MONGOCONNECTION }}
+  JWTPRIVATEKEY: ${{ secrets.JWTPRIVATEKEY }}
